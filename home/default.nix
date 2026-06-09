@@ -20,10 +20,12 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = "hx";
-    VISUAL = "hx";
     COLORTERM = "truecolor";
   };
+
+  imports = [
+    ./neovim.nix
+  ];
 
   programs.git = {
     enable = true;
