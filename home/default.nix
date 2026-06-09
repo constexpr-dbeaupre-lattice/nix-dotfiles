@@ -11,6 +11,11 @@
   programs.home-manager.enable = true;
 
   home.packages = [
+    pkgs.fd
+    pkgs.gcc
+    pkgs.lua-language-server
+    pkgs.nil
+    pkgs.ripgrep
     pkgs.wl-clipboard
   ];
 
@@ -20,11 +25,6 @@
     COLORTERM = "truecolor";
   };
 
-  programs.delta = {
-    enable = true;
-    enableGitIntegration = true;
-  };
-  
   programs.git = {
     enable = true;
     settings = {
@@ -39,23 +39,6 @@
 
   programs.fish = {
     enable = true;
-  };
-
-  programs.helix = {
-    enable = true;
-    settings = {
-      theme = "kanagawa-dragon";
-      editor = {
-        true-color = true;
-        line-number = "relative";
-        cursorline = true;
-        cursor-shape = {
-          insert = "bar";
-          normal = "block";
-          select = "underline";
-        };
-      };
-    };
   };
 
   programs.starship = {
