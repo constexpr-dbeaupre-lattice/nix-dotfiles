@@ -14,18 +14,17 @@
     pkgs.fd
     pkgs.gcc
     pkgs.lua-language-server
+    pkgs.neovim
     pkgs.nil
     pkgs.ripgrep
     pkgs.wl-clipboard
   ];
 
   home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
     COLORTERM = "truecolor";
   };
-
-  imports = [
-    ./neovim.nix
-  ];
 
   programs.git = {
     enable = true;
@@ -46,4 +45,7 @@
   programs.starship = {
     enable = true;
   };
+
+  xdg.configFile."nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-dotfiles/nvim";
 }
