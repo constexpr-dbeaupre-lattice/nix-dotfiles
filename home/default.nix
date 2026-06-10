@@ -11,8 +11,11 @@
   programs.home-manager.enable = true;
 
   home.packages = [
+    pkgs.curl
     pkgs.fd
+    pkgs.fzf
     pkgs.gcc
+    pkgs.lazygit
     pkgs.lua-language-server
     pkgs.neovim
     pkgs.nil
@@ -34,7 +37,7 @@
       init.defaultBranch = "main";
       pull.rebase = false;
       push.autoSetupRemote = true;
-      core.editor = "hx";
+      core.editor = "nvim";
     };
   };
 
@@ -44,6 +47,21 @@
 
   programs.starship = {
     enable = true;
+  };
+
+  editorconfig.enable = true;
+  editorconfig.settings = {
+    "*" = {
+      charset = "utf-8";
+      end_of_line = "lf";
+      indent_style = "space";
+      indent_size = 2;
+      trim_trailing_whitespace = true;
+      insert_final_newline = true;
+    };
+    "*.py" = {
+      indent_size = 4;
+    };
   };
 
   xdg.configFile."nvim".source =
