@@ -4,16 +4,13 @@
   home.username = "dbeaupre";
   home.homeDirectory = "/home/dbeaupre";
 
-  # Keep this matched to the release you are pinning to.
   home.stateVersion = "26.05";
 
-  # Let Home Manager manage itself.
   programs.home-manager.enable = true;
 
   home.packages = [
     pkgs.curl
     pkgs.fd
-    pkgs.fzf
     pkgs.gcc
     pkgs.lazygit
     pkgs.lua-language-server
@@ -29,6 +26,15 @@
     COLORTERM = "truecolor";
   };
 
+  programs.fish = {
+    enable = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.git = {
     enable = true;
     settings = {
@@ -39,10 +45,6 @@
       push.autoSetupRemote = true;
       core.editor = "nvim";
     };
-  };
-
-  programs.fish = {
-    enable = true;
   };
 
   programs.starship = {
