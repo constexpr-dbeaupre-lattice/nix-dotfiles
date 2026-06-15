@@ -7,7 +7,6 @@ let
     text = ''
       DIRECTORIES=(
         "$HOME"
-        "$HOME/nix-dotfiles"
       )
 
       # One argument was provided, select it as a directory.
