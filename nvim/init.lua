@@ -31,7 +31,7 @@ vim.pack.add({
   { src = 'https://github.com/folke/snacks.nvim' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/nvim-mini/mini.ai',                        version = 'stable' },
-  { src = 'https://github.com/nvim-mini/mini.icons',                     stable = 'stable' },
+  { src = 'https://github.com/nvim-mini/mini.icons',                     version = 'stable' },
   { src = 'https://github.com/nvim-mini/mini.pairs',                     version = 'stable' },
   { src = 'https://github.com/nvim-mini/mini.statusline',                version = 'stable' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter',          version = 'main' },
