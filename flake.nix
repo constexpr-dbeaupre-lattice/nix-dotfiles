@@ -16,7 +16,7 @@
     in {
       homeConfigurations.dbeaupre = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home ];
+        modules = [ ./home.nix ];
       };
     };
 }
