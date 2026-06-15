@@ -48,6 +48,12 @@
     };
   };
 
+  programs.keychain = {
+    enable = true;
+    keys = [ "id_ed25519" ];
+    enableFishIntegration = true;
+  };
+
   programs.starship = {
     enable = true;
   };
