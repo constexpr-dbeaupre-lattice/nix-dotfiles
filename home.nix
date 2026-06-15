@@ -3,7 +3,11 @@
 let
   tmux-session-handler = pkgs.writeShellApplication {
     name = "tmux-session-handler";
-    runtimeInputs = with pkgs; [ fd fzf tmux ];
+    runtimeInputs = with pkgs; [
+      fd
+      fzf
+      tmux
+    ];
     text = ''
       DIRECTORIES=(
         "$HOME"
