@@ -17,6 +17,7 @@
     pkgs.neovim
     pkgs.nil
     pkgs.ripgrep
+    pkgs.tree-sitter
     pkgs.wl-clipboard
   ];
 
