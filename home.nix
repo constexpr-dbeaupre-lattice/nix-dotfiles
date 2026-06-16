@@ -50,6 +50,7 @@ in
   programs.home-manager.enable = true;
 
   home.packages = [
+    pkgs.claude-code
     pkgs.curl
     pkgs.fd
     pkgs.gcc
