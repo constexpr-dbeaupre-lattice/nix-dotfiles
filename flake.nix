@@ -21,5 +21,12 @@
         inherit pkgs;
         modules = [ ./home.nix ];
       };
+
+      templates = {
+        groovy = {
+          path = ./templates/groovy;
+          description = "Groovy + Gradle development shell";
+        };
+      };
     };
 }

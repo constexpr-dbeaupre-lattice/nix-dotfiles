@@ -61,6 +61,7 @@ in
     pkgs.nil
     pkgs.ripgrep
     pkgs.tree-sitter
+    pkgs.uv
     pkgs.wl-clipboard
     tmux-session-handler
   ];
