@@ -20,7 +20,8 @@
     },
     "mini.icons": {
       "rev": "d48ad47359218d2b019034f95f601b3861180885",
-      "src": "https://github.com/nvim-mini/mini.icons"
+      "src": "https://github.com/nvim-mini/mini.icons",
+      "version": "'stable'"
     },
     "mini.pairs": {
       "rev": "30cf2f01c4aaa2033db67376b9924fa2442c05d6",

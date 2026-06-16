@@ -41,19 +41,7 @@ vim.pack.add({
   { src = 'https://github.com/stevearc/oil.nvim' }
 })
 
-require('blink.cmp').setup({
-  keymap = { preset = 'default' },
-  appearance = { nerd_font_variant = 'mono' },
-  completion = {
-    documentation = { auto_show = true },
-  },
-  sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer' },
-  },
-  fuzzy = { implementation = 'prefer_rust_with_warning' },
-})
-
-require('kanagawa').load('lotus')
+require('kanagawa').load('wave')
 
 require('mini.icons').setup()
 require('oil').setup()
@@ -69,6 +57,18 @@ require('marks').setup {
 require('nvim-treesitter').install({ 'c', 'cpp', 'lua', 'markdown', 'python' })
 
 require('snacks').setup({ picker = { enabled = true } })
+
+require('blink.cmp').setup({
+  keymap = { preset = 'default' },
+  appearance = { nerd_font_variant = 'mono' },
+  completion = {
+    documentation = { auto_show = true },
+  },
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  },
+  fuzzy = { implementation = 'prefer_rust_with_warning' },
+})
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'c', 'cpp', 'lua', 'markdown', 'python' },
