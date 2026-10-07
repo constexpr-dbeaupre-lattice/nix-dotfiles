@@ -41,7 +41,7 @@ vim.pack.add({
   { src = 'https://github.com/stevearc/oil.nvim' }
 })
 
-require('kanagawa').load('wave')
+require('kanagawa').load('dragon')
 
 require('mini.icons').setup()
 require('oil').setup()
