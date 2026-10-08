@@ -11,7 +11,7 @@ let
     text = ''
       DIRECTORIES=(
         "$HOME"
-        "$HOME/projects/"
+        "$HOME/development"
       )
 
       # One argument was provided, select it as a directory.
