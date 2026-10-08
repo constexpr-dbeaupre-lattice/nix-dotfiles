@@ -10,6 +10,17 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
       python = pkgs.python3;
+
+      # mypy only sees packages next to its own interpreter, so point it at the venv.
+      mypy = pkgs.writeShellApplication {
+        name = "mypy";
+        text = ''
+          if [[ -n "''${VIRTUAL_ENV:-}" && -x "$VIRTUAL_ENV/bin/python" ]]; then
+            exec ${pkgs.lib.getExe pkgs.mypy} --python-executable "$VIRTUAL_ENV/bin/python" "$@"
+          fi
+          exec ${pkgs.lib.getExe pkgs.mypy} "$@"
+        '';
+      };
     in {
       devShells.${system}.default = pkgs.mkShell {
         packages = [
@@ -17,6 +28,7 @@
           pkgs.uv
           pkgs.ruff
           pkgs.pyright
+          mypy
         ];
 
         # Make uv use the Python from Nix instead of downloading its own.
@@ -43,6 +55,7 @@
           echo "  - uv       ${pkgs.uv.version}"
           echo "  - ruff     ${pkgs.ruff.version}"
           echo "  - pyright  ${pkgs.pyright.version}"
+          echo "  - mypy     ${pkgs.mypy.version}"
         '';
       };
     };
