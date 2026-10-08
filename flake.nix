@@ -23,9 +23,25 @@
       };
 
       templates = {
+        cpp = {
+          path = ./templates/cpp;
+          description = "C++ + CMake development shell";
+        };
+        go = {
+          path = ./templates/go;
+          description = "Go development shell";
+        };
         groovy = {
           path = ./templates/groovy;
           description = "Groovy + Gradle development shell";
+        };
+        python = {
+          path = ./templates/python;
+          description = "Python + uv development shell";
+        };
+        rust = {
+          path = ./templates/rust;
+          description = "Rust + Cargo development shell";
         };
       };
     };

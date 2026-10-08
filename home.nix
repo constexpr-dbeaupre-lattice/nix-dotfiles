@@ -62,7 +62,6 @@ in
     pkgs.ripgrep
     pkgs.tree-sitter
     pkgs.tuicr
-    pkgs.uv
     pkgs.wl-clipboard
     tmux-session-handler
   ];
@@ -71,6 +70,13 @@ in
     EDITOR = "nvim";
     VISUAL = "nvim";
     COLORTERM = "truecolor";
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = true;
+    enableGitIntegration = true;
+    nix-direnv.enable = true;
   };
 
   programs.fish = {

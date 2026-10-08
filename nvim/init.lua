@@ -54,7 +54,7 @@ require('marks').setup {
   builtin_marks = { '<', '>', '^' },
 }
 
-require('nvim-treesitter').install({ 'c', 'cpp', 'lua', 'markdown', 'python' })
+require('nvim-treesitter').install({ 'c', 'cpp', 'go', 'groovy', 'lua', 'markdown', 'python', 'rust' })
 
 require('snacks').setup({ picker = { enabled = true } })
 
@@ -71,7 +71,7 @@ require('blink.cmp').setup({
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'c', 'cpp', 'lua', 'markdown', 'python' },
+  pattern = { 'c', 'cpp', 'go', 'groovy', 'lua', 'markdown', 'python', 'rust' },
   callback = function() vim.treesitter.start() end,
 })
 
@@ -83,7 +83,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.lsp.enable({ 'lua_ls', 'nil_ls' })
+vim.lsp.enable({ 'clangd', 'gopls', 'groovyls', 'lua_ls', 'nil_ls', 'pyright', 'rust_analyzer' })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float() end, { desc = 'Open float diagnostic.' })
