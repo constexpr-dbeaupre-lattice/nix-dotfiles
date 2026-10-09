@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   tmux-session-handler = pkgs.writeShellApplication {
@@ -56,19 +56,13 @@ in
     pkgs.fd
     pkgs.gcc
     pkgs.lazygit
-    pkgs.lua-language-server
-    pkgs.neovim
-    pkgs.nil
     pkgs.ripgrep
-    pkgs.tree-sitter
     pkgs.tuicr
     pkgs.wl-clipboard
     tmux-session-handler
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
     COLORTERM = "truecolor";
   };
 
@@ -166,7 +160,4 @@ in
       indent_size = 4;
     };
   };
-
-  xdg.configFile."nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-dotfiles/nvim";
 }
