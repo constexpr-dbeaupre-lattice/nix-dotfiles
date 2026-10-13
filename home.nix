@@ -56,6 +56,7 @@ in
     pkgs.fd
     pkgs.gcc
     pkgs.lazygit
+    pkgs.nil
     pkgs.ripgrep
     pkgs.tuicr
     pkgs.wl-clipboard
@@ -64,13 +65,6 @@ in
 
   home.sessionVariables = {
     COLORTERM = "truecolor";
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableFishIntegration = true;
-    enableGitIntegration = true;
-    nix-direnv.enable = true;
   };
 
   programs.fish = {
@@ -95,7 +89,7 @@ in
       init.defaultBranch = "main";
       pull.rebase = false;
       push.autoSetupRemote = true;
-      core.editor = "nvim";
+      core.editor = "hx";
     };
   };
 
