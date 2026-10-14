@@ -51,14 +51,18 @@ in
   programs.home-manager.enable = true;
 
   home.packages = [
+    pkgs.clang-tools
     pkgs.claude-code
     pkgs.curl
     pkgs.fd
     pkgs.gcc
     pkgs.lazygit
+    pkgs.markdown-oxide
     pkgs.nil
     pkgs.ripgrep
+    pkgs.ruff
     pkgs.tuicr
+    pkgs.ty
     pkgs.wl-clipboard
     tmux-session-handler
   ];
