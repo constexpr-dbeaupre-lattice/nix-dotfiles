@@ -59,6 +59,7 @@ in
     pkgs.lazygit
     pkgs.markdown-oxide
     pkgs.nil
+    pkgs.opencode
     pkgs.ripgrep
     pkgs.ruff
     pkgs.tuicr
