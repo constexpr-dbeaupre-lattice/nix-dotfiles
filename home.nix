@@ -98,6 +98,15 @@ in
     };
   };
 
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user.name = "David-Alexandre Beaupre";
+      user.email = "david-alexandre.beaupre@latticesemi.com";
+      ui.editor = "hx";
+    };
+  };
+
   programs.keychain = {
     enable = true;
     keys = [ "id_ed25519" ];
