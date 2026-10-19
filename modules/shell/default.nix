@@ -1,7 +1,11 @@
 {
   imports = [
+    ./bat.nix
+    ./eza.nix
     ./fish.nix
-    ./prompt.nix
-    ./tools.nix
+    ./fzf.nix
+    ./keychain.nix
+    ./starship.nix
+    ./zoxide.nix
   ];
 }
