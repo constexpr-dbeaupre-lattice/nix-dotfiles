@@ -1,10 +1,16 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
-  tmux-session-handler = pkgs.callPackage ./session-handler.nix { };
+  tmux-session-handler = "${config.home.homeDirectory}/.local/bin/tmux-session-handler";
 in
 {
-  home.packages = [ tmux-session-handler ];
+  # Runtime dependencies of the script, which is symlinked from scripts/.
+  home.packages = with pkgs; [
+    fd
+    fzf
+  ];
+
+  home.file.".local/bin/tmux-session-handler".source = ../../scripts/tmux-session-handler.sh;
 
   programs.tmux = {
     enable = true;
@@ -37,7 +43,7 @@ in
       setw -g window-status-current-format "#I:#W "
       setw -g window-status-style "fg=color3"
 
-      bind-key -r f run-shell "tmux new-window ${tmux-session-handler}/bin/tmux-session-handler"
+      bind-key -r f run-shell "tmux new-window ${tmux-session-handler}"
       bind-key -r h run-shell "tmux switch-client -t default"
       bind-key -r ^ last-window
     '';
