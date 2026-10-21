@@ -1,6 +1,15 @@
 local builtin = require("telescope.builtin")
 
-require("telescope").setup({})
+require("telescope").setup({
+  defaults = {
+    layout_strategy = "horizontal",
+    layout_config = {
+      width = 0.99,
+      height = 0.99,
+      preview_width = 0.6,
+    },
+  },
+})
 
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
