@@ -4,13 +4,14 @@
   home.packages = [
     pkgs.clang-tools
     pkgs.claude-code
+    pkgs.cursor-cli
     pkgs.curl
     pkgs.fd
     pkgs.gcc
+    pkgs.glow
     pkgs.lazygit
-    pkgs.markdown-oxide
+    pkgs.lua-language-server
     pkgs.nil
-    pkgs.opencode
     pkgs.ripgrep
     pkgs.ruff
     pkgs.tuicr
