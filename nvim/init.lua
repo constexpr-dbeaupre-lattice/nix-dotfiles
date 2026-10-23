@@ -1,6 +1,7 @@
 -- Options.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
 vim.o.breakindent = true
 vim.o.confirm = true
 vim.o.cursorline = true
@@ -35,19 +36,6 @@ vim.o.wrap = true
 vim.diagnostic.config({ virtual_text = true })
 
 -- Package management.
-vim.api.nvim_create_autocmd('PackChanged', {
-  group = vim.api.nvim_create_augroup('pack-changed', { clear = true }),
-  callback = function(event)
-    local name, kind = event.data.spec.name, event.data.kind
-    if name == 'nvim-treesitter' and kind == 'update' then
-      if not event.data.active then
-        vim.cmd.packadd('nvim-treesitter')
-      end
-      vim.cmd('TSUpdate')
-    end
-  end,
-})
-
 vim.pack.add({
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/mfussenegger/nvim-dap' },
@@ -55,7 +43,7 @@ vim.pack.add({
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/nvim-mini/mini.statusline', version = 'main' },
-  { src = 'https://github.com/nvim-telescope/telescope.nvim', version = '*' },
+  { src = 'https://github.com/nvim-telescope/telescope.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   { src = 'https://github.com/rebelot/kanagawa.nvim' },
@@ -221,9 +209,10 @@ vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit the current buffer
 vim.keymap.set('n', '<leader>Q', '<cmd>wqa<CR>', { desc = 'Write all buffers and quit.' })
 vim.keymap.set('n', '<leader>s', vim.diagnostic.open_float, { desc = 'Open float diagnostic.' })
 vim.keymap.set('n', '<leader>e', '<cmd>Oil<CR>', { desc = 'Open directory of current file.' })
-vim.keymap.set({ 'n', 'v' }, '<leader>cf', function()
+vim.keymap.set('n', '<leader>cf', function()
   require('conform').format({ async = true, lsp_format = 'fallback' })
-end, { desc = 'Format buffer or selection.' })
+end, { desc = 'Format buffer.' })
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Search files.' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Search grep.' })
@@ -235,6 +224,7 @@ vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Search keymaps.' })
 vim.keymap.set('n', '<leader>fn', function()
   builtin.find_files({ cwd = vim.fn.stdpath('config'), follow = true })
 end, { desc = 'Search Neovim files.' })
+
 local widgets = require('dap.ui.widgets')
 vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Toggle breakpoint.' })
 vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Start or continue debugging.' })
@@ -252,6 +242,19 @@ vim.keymap.set('n', '<leader>df', function()
 end, { desc = 'Show debug frames.' })
 
 -- Autocommands.
+vim.api.nvim_create_autocmd('PackChanged', {
+  group = vim.api.nvim_create_augroup('pack-changed', { clear = true }),
+  callback = function(event)
+    local name, kind = event.data.spec.name, event.data.kind
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not event.data.active then
+        vim.cmd.packadd('nvim-treesitter')
+      end
+      vim.cmd('TSUpdate')
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('treesitter-start', { clear = true }),
   callback = function(event)
