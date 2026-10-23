@@ -36,6 +36,19 @@ vim.o.wrap = true
 vim.diagnostic.config({ virtual_text = true })
 
 -- Package management.
+vim.api.nvim_create_autocmd('PackChanged', {
+  group = vim.api.nvim_create_augroup('pack-changed', { clear = true }),
+  callback = function(event)
+    local name, kind = event.data.spec.name, event.data.kind
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not event.data.active then
+        vim.cmd.packadd('nvim-treesitter')
+      end
+      vim.cmd('TSUpdate')
+    end
+  end,
+})
+
 vim.pack.add({
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/mfussenegger/nvim-dap' },
@@ -155,10 +168,12 @@ require('conform').setup({
     nix = { 'nixfmt' },
     python = { 'ruff_organize_imports', 'ruff_format' },
   },
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_format = 'fallback',
-  },
+  format_on_save = function(buf)
+    if vim.tbl_contains({ 'c', 'cpp' }, vim.bo[buf].filetype) and not vim.fs.root(buf, '.clang-format') then
+      return
+    end
+    return { timeout_ms = 500, lsp_format = 'fallback' }
+  end,
 })
 
 -- LSP.
@@ -169,6 +184,11 @@ vim.lsp.config('lua_ls', {
       workspace = { library = { vim.env.VIMRUNTIME } },
     },
   },
+})
+vim.lsp.config('ruff', {
+  on_attach = function(client)
+    client.server_capabilities.hoverProvider = false
+  end,
 })
 vim.lsp.enable({ 'clangd', 'lua_ls', 'nil_ls', 'ruff', 'ty' })
 
@@ -205,7 +225,7 @@ require('dap-python').setup('debugpy-adapter')
 -- Keymaps.
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Write the current buffer.' })
-vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit the current buffer.' })
+vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit the current window.' })
 vim.keymap.set('n', '<leader>Q', '<cmd>wqa<CR>', { desc = 'Write all buffers and quit.' })
 vim.keymap.set('n', '<leader>s', vim.diagnostic.open_float, { desc = 'Open float diagnostic.' })
 vim.keymap.set('n', '<leader>e', '<cmd>Oil<CR>', { desc = 'Open directory of current file.' })
@@ -242,19 +262,6 @@ vim.keymap.set('n', '<leader>df', function()
 end, { desc = 'Show debug frames.' })
 
 -- Autocommands.
-vim.api.nvim_create_autocmd('PackChanged', {
-  group = vim.api.nvim_create_augroup('pack-changed', { clear = true }),
-  callback = function(event)
-    local name, kind = event.data.spec.name, event.data.kind
-    if name == 'nvim-treesitter' and kind == 'update' then
-      if not event.data.active then
-        vim.cmd.packadd('nvim-treesitter')
-      end
-      vim.cmd('TSUpdate')
-    end
-  end,
-})
-
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('treesitter-start', { clear = true }),
   callback = function(event)
