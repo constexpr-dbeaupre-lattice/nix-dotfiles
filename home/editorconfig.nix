@@ -1,10 +1,4 @@
 {
-  home.sessionVariables = {
-    COLORTERM = "truecolor";
-    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    MANROFFOPT = "-c";
-  };
-
   editorconfig.enable = true;
   editorconfig.settings = {
     "*" = {

@@ -10,7 +10,7 @@ in
     fzf
   ];
 
-  home.file.".local/bin/tmux-session-handler".source = ../../scripts/tmux-session-handler.sh;
+  home.file.".local/bin/tmux-session-handler".source = ../scripts/tmux-session-handler.sh;
 
   programs.tmux = {
     enable = true;

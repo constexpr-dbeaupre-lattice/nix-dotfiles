@@ -2,11 +2,12 @@
 
 {
   imports = [
-    ./modules/core
-    ./modules/shell
-    ./modules/vcs
-    ./modules/editor
-    ./modules/terminal
+    ./packages.nix
+    ./editorconfig.nix
+    ./git.nix
+    ./neovim.nix
+    ./tmux.nix
+    ./shell
   ];
 
   home.username = "dbeaupre";

@@ -1,16 +1,13 @@
-let
-  identity = import ./identity.nix;
-in
 {
   programs.git = {
     enable = true;
     settings = {
-      user.name = identity.name;
-      user.email = identity.email;
+      user.name = "David-Alexandre Beaupre";
+      user.email = "david-alexandre.beaupre@latticesemi.com";
       init.defaultBranch = "main";
       pull.rebase = false;
       push.autoSetupRemote = true;
-      core.editor = identity.editor;
+      core.editor = "nvim";
     };
   };
 }
