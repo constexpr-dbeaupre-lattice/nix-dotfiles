@@ -8,7 +8,9 @@
     pkgs.fd
     pkgs.gcc
     pkgs.gdb
+    pkgs.gh
     pkgs.glow
+    pkgs.jq
     pkgs.lazygit
     pkgs.lua-language-server
     pkgs.nil
