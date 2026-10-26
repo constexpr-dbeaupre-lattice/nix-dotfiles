@@ -4,12 +4,6 @@ let
   tmux-session-handler = "${config.home.homeDirectory}/.local/bin/tmux-session-handler";
 in
 {
-  # Runtime dependencies of the script, which is symlinked from scripts/.
-  home.packages = with pkgs; [
-    fd
-    fzf
-  ];
-
   home.file.".local/bin/tmux-session-handler".source = ../scripts/tmux-session-handler.sh;
 
   programs.tmux = {

@@ -1,11 +1,6 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
-  home.packages = [
-    pkgs.neovim
-    pkgs.tree-sitter
-  ];
-
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
