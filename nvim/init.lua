@@ -51,8 +51,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
 
 vim.pack.add({
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/mfussenegger/nvim-dap' },
-  { src = 'https://github.com/mfussenegger/nvim-dap-python' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/nvim-mini/mini.statusline', version = 'main' },
@@ -60,6 +58,7 @@ vim.pack.add({
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   { src = 'https://github.com/rebelot/kanagawa.nvim' },
+  { src = 'https://github.com/sindrets/diffview.nvim' },
   { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('^1') },
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://github.com/stevearc/oil.nvim' },
@@ -147,6 +146,7 @@ require('gitsigns').setup({
     vim.keymap.set('n', '<leader>hs', gitsigns.stage_hunk, { buffer = buf, desc = 'Stage hunk.' })
   end,
 })
+require('diffview').setup()
 
 -- Completions.
 require('blink.cmp').setup({
@@ -192,36 +192,6 @@ vim.lsp.config('ruff', {
 })
 vim.lsp.enable({ 'clangd', 'lua_ls', 'nil_ls', 'ruff', 'ty' })
 
--- Debugging.
-local dap = require('dap')
-dap.adapters.gdb = {
-  type = 'executable',
-  command = 'gdb',
-  args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
-}
-dap.configurations.cpp = {
-  {
-    name = 'Launch',
-    type = 'gdb',
-    request = 'launch',
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    args = function()
-      return vim.split(vim.fn.input('Arguments: '), ' ', { trimempty = true })
-    end,
-    cwd = '${workspaceFolder}',
-  },
-  {
-    name = 'Attach',
-    type = 'gdb',
-    request = 'attach',
-    pid = require('dap.utils').pick_process,
-  },
-}
-dap.configurations.c = dap.configurations.cpp
-require('dap-python').setup('debugpy-adapter')
-
 -- Keymaps.
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Write the current buffer.' })
@@ -245,21 +215,10 @@ vim.keymap.set('n', '<leader>fn', function()
   builtin.find_files({ cwd = vim.fn.stdpath('config'), follow = true })
 end, { desc = 'Search Neovim files.' })
 
-local widgets = require('dap.ui.widgets')
-vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Toggle breakpoint.' })
-vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Start or continue debugging.' })
-vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Step into.' })
-vim.keymap.set('n', '<leader>do', dap.step_over, { desc = 'Step over.' })
-vim.keymap.set('n', '<leader>dO', dap.step_out, { desc = 'Step out.' })
-vim.keymap.set('n', '<leader>dt', dap.terminate, { desc = 'Terminate debugging.' })
-vim.keymap.set('n', '<leader>dr', dap.repl.toggle, { desc = 'Toggle debug REPL.' })
-vim.keymap.set('n', '<leader>dh', widgets.hover, { desc = 'Hover debug value.' })
-vim.keymap.set('n', '<leader>ds', function()
-  widgets.centered_float(widgets.scopes)
-end, { desc = 'Show debug scopes.' })
-vim.keymap.set('n', '<leader>df', function()
-  widgets.centered_float(widgets.frames)
-end, { desc = 'Show debug frames.' })
+vim.keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<CR>', { desc = 'Open diff view.' })
+vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', { desc = 'Show current file history.' })
+vim.keymap.set('n', '<leader>gH', '<cmd>DiffviewFileHistory<CR>', { desc = 'Show repository history.' })
+vim.keymap.set('n', '<leader>gq', '<cmd>DiffviewClose<CR>', { desc = 'Close diff view.' })
 
 -- Autocommands.
 vim.api.nvim_create_autocmd('FileType', {
