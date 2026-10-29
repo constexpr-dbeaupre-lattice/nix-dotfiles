@@ -21,5 +21,10 @@
         inherit pkgs;
         modules = [ ./home ];
       };
+
+      templates.cpp = {
+        path = ./templates/cpp;
+        description = "C++ development shell";
+      };
     };
 }
