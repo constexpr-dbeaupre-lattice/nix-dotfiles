@@ -7,7 +7,9 @@
     sideloadInitLua = true;
     extraPackages = [
       pkgs.clang-tools
+      pkgs.inotify-tools
       pkgs.lua-language-server
+      pkgs.markdown-oxide
       pkgs.nil
       pkgs.nixfmt
       pkgs.ruff

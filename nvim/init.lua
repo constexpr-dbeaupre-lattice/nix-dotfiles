@@ -176,12 +176,17 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
+vim.lsp.config('markdown_oxide', {
+  capabilities = {
+    workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
+  },
+})
 vim.lsp.config('ruff', {
   on_attach = function(client)
     client.server_capabilities.hoverProvider = false
   end,
 })
-vim.lsp.enable({ 'clangd', 'lua_ls', 'nil_ls', 'ruff', 'ty' })
+vim.lsp.enable({ 'clangd', 'lua_ls', 'markdown_oxide', 'nil_ls', 'ruff', 'ty' })
 
 -- Keymaps.
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
