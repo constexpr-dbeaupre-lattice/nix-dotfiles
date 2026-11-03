@@ -51,6 +51,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
 
 vim.pack.add({
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+  { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/nvim-mini/mini.statusline', version = 'main' },
@@ -130,6 +131,9 @@ require('telescope').setup({
     },
   },
 })
+
+-- Markdown.
+require('render-markdown').setup()
 
 -- Git.
 require('gitsigns').setup()
