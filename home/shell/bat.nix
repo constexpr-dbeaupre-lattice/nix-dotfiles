@@ -4,7 +4,6 @@
     config = {
       theme = "base16";
       style = "numbers,changes,header";
-      italic-text = "always";
     };
   };
 
