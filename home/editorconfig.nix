@@ -12,5 +12,8 @@
     "*.py" = {
       indent_size = 4;
     };
+    "*.md" = {
+      trim_trailing_whitespace = false;
+    };
   };
 }

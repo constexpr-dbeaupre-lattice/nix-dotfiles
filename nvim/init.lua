@@ -132,20 +132,7 @@ require('telescope').setup({
 })
 
 -- Git.
-require('gitsigns').setup({
-  on_attach = function(buf)
-    local gitsigns = require('gitsigns')
-    vim.keymap.set('n', ']h', function()
-      gitsigns.nav_hunk('next')
-    end, { buffer = buf, desc = 'Next hunk.' })
-    vim.keymap.set('n', '[h', function()
-      gitsigns.nav_hunk('prev')
-    end, { buffer = buf, desc = 'Previous hunk.' })
-    vim.keymap.set('n', '<leader>hp', gitsigns.preview_hunk, { buffer = buf, desc = 'Preview hunk.' })
-    vim.keymap.set('n', '<leader>hr', gitsigns.reset_hunk, { buffer = buf, desc = 'Reset hunk.' })
-    vim.keymap.set('n', '<leader>hs', gitsigns.stage_hunk, { buffer = buf, desc = 'Stage hunk.' })
-  end,
-})
+require('gitsigns').setup()
 require('diffview').setup()
 
 -- Completions.
@@ -197,7 +184,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Write the current buffer.' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit the current window.' })
 vim.keymap.set('n', '<leader>Q', '<cmd>wqa<CR>', { desc = 'Write all buffers and quit.' })
-vim.keymap.set('n', '<leader>s', vim.diagnostic.open_float, { desc = 'Open float diagnostic.' })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open float diagnostic.' })
 vim.keymap.set('n', '<leader>e', '<cmd>Oil<CR>', { desc = 'Open directory of current file.' })
 vim.keymap.set('n', '<leader>cf', function()
   require('conform').format({ async = true, lsp_format = 'fallback' })

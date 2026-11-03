@@ -19,7 +19,6 @@ in
     extraConfig = ''
       set -g renumber-windows on
       set -as terminal-features ",*:RGB"
-      set -as terminal-overrides ",*:Tc"
 
       bind r source-file ~/.config/tmux/tmux.conf
       bind-key -T copy-mode-vi v send-keys -X begin-selection
@@ -37,9 +36,9 @@ in
       setw -g window-status-current-format "#I:#W "
       setw -g window-status-style "fg=color3"
 
-      bind-key -r f run-shell "tmux new-window ${tmux-session-handler}"
-      bind-key -r h run-shell "tmux switch-client -t default"
-      bind-key -r ^ last-window
+      bind-key f run-shell "tmux new-window ${tmux-session-handler}"
+      bind-key h run-shell "tmux switch-client -t default"
+      bind-key ^ last-window
     '';
   };
 }

@@ -18,9 +18,7 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 
-tmux_running=$(pgrep tmux || true)
-
-if [[ -z "${TMUX:-}" ]] && [[ -z "$tmux_running" ]]; then
+if [[ -z "${TMUX:-}" ]] && ! tmux list-sessions; then
     tmux new-session -s "$selected_name" -c "$selected"
     exit 0
 fi
