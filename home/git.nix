@@ -1,6 +1,7 @@
 {
   programs.git = {
     enable = true;
+    lfs.enable = true;
     settings = {
       user.name = "David-Alexandre Beaupre";
       user.email = "david-alexandre.beaupre@latticesemi.com";
