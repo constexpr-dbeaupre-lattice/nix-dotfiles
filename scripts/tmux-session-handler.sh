@@ -10,7 +10,7 @@ DIRECTORIES=(
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . "${DIRECTORIES[@]}" --type directory --max-depth 1 --full-path --base-directory "$HOME" | sed "s|^$HOME/||" | fzf || true)
+    selected=$(fd . "${DIRECTORIES[@]}" --type directory --max-depth 1 --full-path --base-directory "$HOME" | sed "s|^$HOME/||" | fzf --tmux center,60%,50% --border rounded || true)
     [[ $selected ]] && selected="$HOME/$selected"
 fi
 
