@@ -206,6 +206,7 @@ vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Search diagnost
 vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Search current word.' })
 vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Search existing buffers.' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Search help.' })
+vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = 'Search help.' })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Search keymaps.' })
 vim.keymap.set('n', '<leader>fn', function()
   builtin.find_files({ cwd = vim.fn.stdpath('config'), follow = true })
