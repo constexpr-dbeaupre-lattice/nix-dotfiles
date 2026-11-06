@@ -27,13 +27,13 @@ in
       set -g status-position top
       set -g status-justify absolute-centre
       set -g status-style "fg=color7 bg=default"
-      set -g status-left " #S "
+      set -g status-left " [#S] "
       set -g status-left-style "fg=color5"
       set -g status-left-length 96
       set -g status-right ""
       set -g status-right-length 0
       setw -g window-status-current-style "fg=color6 bg=default bold"
-      setw -g window-status-current-format "#I:#W "
+      setw -g window-status-current-format " #I:[#W] "
       setw -g window-status-style "fg=color3"
 
       bind-key f run-shell "tmux new-window ${tmux-session-handler}"
