@@ -7,6 +7,7 @@
     ./fzf.nix
     ./keychain.nix
     ./starship.nix
+    ./yazi.nix
     ./zoxide.nix
   ];
 }
