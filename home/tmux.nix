@@ -33,7 +33,7 @@ in
       set -g status-right ""
       set -g status-right-length 0
       setw -g window-status-current-style "fg=color6 bg=default bold"
-      setw -g window-status-current-format " #I:[#W] "
+      setw -g window-status-current-format "#I:[#W] "
       setw -g window-status-style "fg=color3"
 
       bind-key f run-shell "tmux new-window ${tmux-session-handler}"
