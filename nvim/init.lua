@@ -211,7 +211,7 @@ vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Search keymaps.' })
 vim.keymap.set('n', '<leader>fn', function()
   builtin.find_files({ cwd = vim.fn.stdpath('config'), follow = true })
 end, { desc = 'Search Neovim files.' })
-
+vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = 'Search modified files.' })
 vim.keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<CR>', { desc = 'Open diff view.' })
 vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', { desc = 'Show current file history.' })
 vim.keymap.set('n', '<leader>gH', '<cmd>DiffviewFileHistory<CR>', { desc = 'Show repository history.' })
